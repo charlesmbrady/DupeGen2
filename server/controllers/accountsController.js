@@ -16,8 +16,18 @@ module.exports = {
     db.Account
       .create(account)
       .then(dbModel => {
-        res.json(dbModel);
+        res.status(200);
       })
       .catch(err => res.status(422).json(err));
+  },
+  createMany: function (req, res) {
+    db.Account
+      .insertMany(req.body, {
+        ordered: true
+     })
+      .then(dbRes => {
+        res.status(200);
+      })
+      .catch(err => res.startus(422).json(err));
   }
 };

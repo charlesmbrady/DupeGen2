@@ -4,8 +4,8 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 let MONGO_URL;
-//const MONGO_LOCAL_URL = 'mongodb://localhost/DupeGen';
-const MONGO_LOCAL_URL = 'mongodb://heroku_r453vcr5:1iqbbnf9t8vt9sl80rpcpis03k@ds263146.mlab.com:63146/heroku_r453vcr5';
+const MONGO_LOCAL_URL = 'mongodb://localhost/DupeGen';
+// use this for connecting to prod DB    const MONGO_LOCAL_URL = 'mongodb://heroku_r453vcr5:1iqbbnf9t8vt9sl80rpcpis03k@ds263146.mlab.com:63146/heroku_r453vcr5';
 //prod URI
 
 if (process.env.MONGODB_URI) {

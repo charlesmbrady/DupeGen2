@@ -12,8 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middlewares
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ limit: '100mb', extended: true }));
+app.use(express.json({limit: '100mb'}));
 
 // If its production environment!
 if (process.env.NODE_ENV === 'production') {
