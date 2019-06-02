@@ -3,7 +3,8 @@ const scenariosController = require("../../controllers/scenariosController");
 
 // Matches with "/api/scenarios"
 router.route("/")
-  .get(scenariosController.new);
+  // .post(scenariosController.new)
+  .get(scenariosController.new)
 
 
 
