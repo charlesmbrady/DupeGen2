@@ -10,8 +10,25 @@ module.exports = {
     // utils.processScenario(req.body).then( results => {
     //   utils.downloadCsv(results, res);
     // });
+    const scenario = {
+      objectType: "account",
+      totalRecordCount: 100000,
+      matches: [
+        {
+          name: "unique",
+          recordCount: 100000,
+          dupeCount: 2,
+          fields: [
+            {
+              name:"accountName"
+            }
+          ]
+        }
+      ]
+    }
 
-    utils.newProcessScenario(req.body)
+
+    utils.newProcessScenario(scenario)
       .then(data => {
         console.log("data" + data);
         utils.downloadCsv(data, res);
