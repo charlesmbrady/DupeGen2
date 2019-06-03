@@ -14,5 +14,8 @@ module.exports = {
   },
   createManyAccounts: function(accArr) {
     return axios.post('http://localhost:3001/api/accounts', accArr).catch(err => console.log(err));
+  },
+  newScenario: function(scenario) {
+    return axios.get('/api/scenarios', scenario).catch(err => console.log(err));
   }
 };
