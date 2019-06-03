@@ -17,7 +17,6 @@ const thirdDescriptors = [
     "Authority",
     "Axe",
     "Bag",
-    "Bag",
     "Bagel",
     "Ball",
     "Balloon",

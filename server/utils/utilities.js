@@ -7,24 +7,8 @@ const streetNames = require('./data/streets');
 const firstNames = require('./data/firstNames');
 const lastNames = require('./data/lastNames');
 
-const results = require('./results');
 const utilities = {
     results: [],
-    object: {
-        account: {
-            accountName: "initial account name",
-            street: "initial street",
-            city: "initial city",
-            phone: 2522551122
-        },
-        contact: {
-            //TODO:
-        },
-        lead: {
-            //TODO:
-        }
-
-    },
     recordAccountNames: [],
     recordCities: [],
     recordStreets: [],
@@ -48,6 +32,12 @@ const utilities = {
         //unknowns, and dupe scenarios
         for (let i = 0; i < scenario.matches.length; i++) {
             //first handle unique scenarios
+            const matchFields = [];
+            scenario.matches.forEach(match => {
+                match.fields.forEach(matchField => {
+                    matchFields.push(matchField.name);
+                });
+            });
 
             if (scenario.matches[i].name === "unique") {
                 const currentMatch = scenario.matches[i];
@@ -87,16 +77,29 @@ const utilities = {
                         //push the original new record
                         this.results.push(tempAccount);
                         progress++;
+                        
+                        const dupeFields = [];
                         //now make the duplicate by looping through field names
-                        //and only popping the fields that are NOT in the match array
+                        //if field name is included in the match fields array, push
+                        //to dupeFields array to be used in next step
                         for (accountField in tempAccount) {
-                            currentMatch.fields.forEach(field => {
-                                if (field.name === accountField) {
-                                    this.popTopField(field.name);
+        
+                            //loop through match fields array and see if it's in there
+                            for(let t = 0; t < matchFields.length; t++){
+                                if(accountField === matchFields[t]){
+                                    dupeFields.push(accountField);
                                 }
-                            })
-
+                            }
                         }
+                        //look at each field again compared to dupeFields array
+                        //if it is not in there, change the field bc not creating
+                        //a dupe based on it
+                        for (accountField in tempAccount) {
+                           if(!dupeFields.includes(accountField)){
+                               this.popTopField(accountField);
+                           }
+                        }
+
 
                         //and then reassemblying the tempAccount and pushing
                         tempAccount = {
