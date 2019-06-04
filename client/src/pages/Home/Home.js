@@ -10,6 +10,7 @@ import {
   DropdownItem,
   Table
 } from 'reactstrap';
+import Nav from '../../components/Nav/Nav';
 import utils from '../../utils/API';
 import ObjectDropdown from '../../components/dropdown/Dropdown';
 
@@ -106,19 +107,7 @@ function Home() {
 
   return (
     <div>
-      <div className="container-fluid nav">
-        <Row>
-          <Col>
-            Version 1.0
-          </Col>
-          <Col>
-            DupeGen
-          </Col>
-          <Col>
-            About
-          </Col>
-        </Row>
-      </div>
+      <Nav />
       <Container className="main">
 
         <Row>
