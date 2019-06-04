@@ -31,6 +31,7 @@ function Navi() {
                     <Nav className="ml-auto" navbar>
                         
                         <NavItem>
+                            {/* TODO: make this open a modal with about info */}
                             <Link to="/about" className="nav-link">About</Link>
                         </NavItem>
                     </Nav>

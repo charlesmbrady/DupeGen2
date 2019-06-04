@@ -25,7 +25,7 @@ function Home() {
   const [scenarioObject, setScenarioObject] = useState('');
   const [originalMatchFields, setOriginalMatchFields] = useState([]);
   const [matchFieldsOptions, setMatchFieldsOptions] = useState([]);
-  const [currentMatches, setCurrentMatches] = useState([{ name: "unique", recordCount: 0 }, { name: "unknown", recordCount: 0 }]);
+  const [currentMatches, setCurrentMatches] = useState([{ name: "unique", recordCount: 0, fields: [] }, { name: "unknown", recordCount: 0, fields: [] }]);
   const [currentMatchFields, setCurrentMatchFields] = useState([]);
   const [totalRecordCount, setTotalRecordCount] = useState(0);
 
@@ -33,7 +33,7 @@ function Home() {
     objectType: scenarioObject,
     totalRecordCount: totalRecordCount,
     matches: currentMatches
-  }
+  };
 
   const addField = (value) => {
     const tempMatchFields = currentMatchFields;
@@ -67,9 +67,9 @@ function Home() {
       recordCount: 0,
       fields: matchFields
     }
-    tempCurrentMatches.unshift({ name: "unique", recordCount: 0 });
+    tempCurrentMatches.unshift({ name: "unique", recordCount: 0, fields: [] });
     tempCurrentMatches.push(theMatch);
-    tempCurrentMatches.push({ name: "unknown", recordCount: 0 });
+    tempCurrentMatches.push({ name: "unknown", recordCount: 0, fields:[] });
 
     setCurrentMatches(tempCurrentMatches);
     setMatchFieldsOptions(originalMatchFields);
@@ -107,6 +107,7 @@ function Home() {
 
   return (
     <div>
+      {/* TODO: make 'about' in the navbar open a modal */}
       <Nav />
       <Container className="main">
 

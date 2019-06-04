@@ -2,7 +2,7 @@
   "name": "DupeGen2",
   "version": "1.0.0",
   "description": "",
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3001/",
   "main": "server/server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",

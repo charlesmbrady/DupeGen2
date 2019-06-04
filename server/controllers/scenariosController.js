@@ -9,29 +9,29 @@ module.exports = {
     
       
     
-    const scenario = {
-      objectType: "account",
-      totalRecordCount: 100000,
-      matches: [
-        {
-          name: "unique",
-          recordCount: 100000,
-          dupeCount: 2,
-          fields: [
-            {
-              name:"accountName"
-            }
-          ]
-        }
-      ]
-    }
+    // const scenario = {
+    //   objectType: "account",
+    //   totalRecordCount: 100000,
+    //   matches: [
+    //     {
+    //       name: "unique",
+    //       recordCount: 100000,
+    //       dupeCount: 2,
+    //       fields: [
+    //         {
+    //           name:"accountName"
+    //         }
+    //       ]
+    //     }
+    //   ]
+    // }
 
-    utils.newProcessScenario(scenario)
+    utils.newProcessScenario(req.body)
       .then(data => {
-        console.log("data" + data);
         utils.downloadCsv(data, res);
 
-        console.log("done");
       });
+
+    
   }
 }

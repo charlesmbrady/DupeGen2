@@ -7,7 +7,6 @@ module.exports = {
     return 0;
   },
   newScenario: function(scenario) {
-    console.log(scenario);
-    return axios.get('/api/scenarios', scenario).catch(err => console.log("got an error" + err));
+    return axios.post('/api/scenarios', scenario).catch(err => console.log("got an error" + err));
   }
 };
