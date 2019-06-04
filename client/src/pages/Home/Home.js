@@ -28,6 +28,7 @@ function Home() {
   const [currentMatches, setCurrentMatches] = useState([{ name: "unique", recordCount: 0, fields: [] }, { name: "unknown", recordCount: 0, fields: [] }]);
   const [currentMatchFields, setCurrentMatchFields] = useState([]);
   const [totalRecordCount, setTotalRecordCount] = useState(0);
+  const [downloadReady, setDownloadReady] = useState(false);
 
   const scenario = {
     objectType: scenarioObject,
@@ -211,8 +212,11 @@ function Home() {
                 <p>Total Record Count: {scenario.totalRecordCount}</p>
                 {totalRecordCount !== 0 ? (
                   <div>
-                    <button onClick={() => utils.newScenario(scenario)}>Download .csv</button>
-                    <button onClick={() => utils.test()}><a href="/api/scenarios">test .csv</a></button>
+                    <button onClick={() => utils.newScenario(scenario).then(r => setDownloadReady(r))}>Generate Records</button>
+                    {downloadReady ? (
+                      <button onClick={() => utils.test().then(() => setDownloadReady(false))}><a href="/api/scenarios">Download .csv</a></button>
+                    ) : ""}
+                    
                   </div>
                 ) : ("")}
 

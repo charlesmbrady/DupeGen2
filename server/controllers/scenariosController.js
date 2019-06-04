@@ -29,7 +29,12 @@ module.exports = {
     utils.newProcessScenario(req.body)
       .then(data => {
        
-        utils.downloadCsv(data, res);
+        if(data){
+          res.send(true);
+        }
+        else{
+          res.send(false);
+        }
 
       });
 
