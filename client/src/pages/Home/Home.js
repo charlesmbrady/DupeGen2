@@ -212,7 +212,7 @@ function Home() {
                 {totalRecordCount !== 0 ? (
                   <div>
                     <button onClick={() => utils.newScenario(scenario)}>Download .csv</button>
-                    <button onClick={() => utils.test()}>test .csv</button>
+                    <button onClick={() => utils.test()}><a href="/api/scenarios">test .csv</a></button>
                   </div>
                 ) : ("")}
 
