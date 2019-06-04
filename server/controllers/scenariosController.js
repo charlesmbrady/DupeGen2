@@ -29,12 +29,13 @@ module.exports = {
     utils.newProcessScenario(req.body)
       .then(data => {
        
-        if(data){
-          res.send(true);
-        }
-        else{
-          res.send(false);
-        }
+        // if(data){
+        //   res.send(true);
+        // }
+        // else{
+        //   res.send(false);
+        // }
+        res.send();
 
       });
 

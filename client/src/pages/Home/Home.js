@@ -212,9 +212,13 @@ function Home() {
                 <p>Total Record Count: {scenario.totalRecordCount}</p>
                 {totalRecordCount !== 0 ? (
                   <div>
-                    <button onClick={() => utils.newScenario(scenario).then(r => setDownloadReady(r))}>Generate Records</button>
+                    {/* <button onClick={() => utils.newScenario(scenario).then(r => setDownloadReady(r))}>Generate Records</button>
                     {downloadReady ? (
                       <button onClick={() => utils.test().then(() => setDownloadReady(false))}><a href="/api/scenarios">Download .csv</a></button>
+                    ) : ""} */}
+                     <button onClick={() => utils.newScenario(scenario)}>Generate Records</button>
+                    {downloadReady ? (
+                      <button onClick={() => utils.test()}><a href="/api/scenarios">Download .csv</a></button>
                     ) : ""}
                     
                   </div>
