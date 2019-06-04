@@ -150,6 +150,7 @@ const utilities = {
             }
         }
         //finally, return results 
+        
         return this.results;
 
     },

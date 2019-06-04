@@ -4,9 +4,9 @@ const axios = require('axios');
 
 module.exports = {
   test: function() {
-    return 0;
+    return axios.get('/api/scenarios').catch(err => console.log(err));
   },
   newScenario: function(scenario) {
-    return axios.post('/api/scenarios', scenario).catch(err => console.log("got an error" + err));
+    axios.post('/api/scenarios', scenario).catch(err => console.log("got an error" + err));
   }
 };

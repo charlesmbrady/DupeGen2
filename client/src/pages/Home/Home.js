@@ -69,7 +69,7 @@ function Home() {
     }
     tempCurrentMatches.unshift({ name: "unique", recordCount: 0, fields: [] });
     tempCurrentMatches.push(theMatch);
-    tempCurrentMatches.push({ name: "unknown", recordCount: 0, fields:[] });
+    tempCurrentMatches.push({ name: "unknown", recordCount: 0, fields: [] });
 
     setCurrentMatches(tempCurrentMatches);
     setMatchFieldsOptions(originalMatchFields);
@@ -88,7 +88,7 @@ function Home() {
       if (match.name === event.target.name) {
         if (match.name === "unique" || match.name === "unknown") {
           match.recordCount = value;
-          
+
         } else {
           match.recordCount = value * 2;
         }
@@ -209,8 +209,13 @@ function Home() {
                   </tbody>
                 </Table>
                 <p>Total Record Count: {scenario.totalRecordCount}</p>
-                {totalRecordCount !== 0 ? (<button onClick={() => utils.newScenario(scenario)}>Download .csv</button>) : ("") }
-                
+                {totalRecordCount !== 0 ? (
+                  <div>
+                    <button onClick={() => utils.newScenario(scenario)}>Download .csv</button>
+                    <button onClick={() => utils.test()}>test .csv</button>
+                  </div>
+                ) : ("")}
+
               </div>
             )
         }

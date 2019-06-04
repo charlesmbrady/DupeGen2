@@ -28,10 +28,16 @@ module.exports = {
 
     utils.newProcessScenario(req.body)
       .then(data => {
+       
         utils.downloadCsv(data, res);
 
       });
 
     
+  },
+  download: function (req , res) {
+    console.log("hit download")
+    utils.downloadCsv(utils.results, res);
+    // res.end()
   }
 }
