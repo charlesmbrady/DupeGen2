@@ -1,5 +1,4 @@
 const secondDescriptors = [
-    "First",
     "Blue",
     "White",
     "Pearl",
