@@ -172,7 +172,7 @@ const utilities = {
                     if (scenario.objectType === "contact" || scenario.objectType === "lead") {
                         let tempRecord = {
                             firstName: this.getTopField("firstName"),
-                            lastName: this.getTopField("lasttName"),
+                            lastName: this.getTopField("lastName"),
                             email: this.getTopField("email"),
                             accountName: this.getTopField("accountName"),
                             city: this.getTopField("city"),
@@ -209,7 +209,7 @@ const utilities = {
                         //and then reassemblying the tempRecord and pushing
                         tempRecord = {
                             firstName: this.getTopField("firstName"),
-                            lastName: this.getTopField("lasttName"),
+                            lastName: this.getTopField("lastName"),
                             email: this.getTopField("email"),
                             accountName: this.getTopField("accountName"),
                             city: this.getTopField("city"),
@@ -228,7 +228,7 @@ const utilities = {
                         this.popTopField("city");
                         this.popTopField("phone");
                         this.popTopField("street");
-                        
+
                         this.results.push(tempRecord);
                         progress++;
                         console.log(progress + " / " + scenario.totalRecordCount);
