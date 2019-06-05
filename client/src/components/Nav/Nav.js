@@ -27,15 +27,15 @@ function Navi() {
             <Navbar color="light" light expand="md">
                 <Link to="/" className="navbar-brand">DupeGen</Link>
                 <NavbarToggler onClick={toggler} />
-                <Collapse isOpen={toggle} navbar>
-                    <Nav className="ml-auto" navbar>
+                {/* <Collapse isOpen={toggle} navbar> */}
+                    {/* <Nav className="ml-auto" navbar> */}
                         
-                        <NavItem>
+                        {/* <NavItem> */}
                             {/* TODO: make this open a modal with about info */}
-                            <Link to="/about" className="nav-link">About</Link>
-                        </NavItem>
-                    </Nav>
-                </Collapse>
+                            {/* <Link to="/about" className="nav-link">About</Link> */}
+                        {/* </NavItem> */}
+                    {/* </Nav> */}
+                {/* </Collapse> */}
             </Navbar>
         </div>
 

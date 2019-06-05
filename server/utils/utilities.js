@@ -59,6 +59,52 @@ const utilities = {
                         progress++;
                         console.log(progress + " / " + scenario.totalRecordCount);
                     }
+                    //contact
+                    if (scenario.objectType === "contact") {
+                        const tempRecord = {
+                            firstName: this.getTopField("firstName"),
+                            lastName: this.getTopField("lasttName"),
+                            email: this.getTopField("email"),
+                            accountName: this.getTopField("accountName"),
+                            city: this.getTopField("city"),
+                            phone: this.getTopField("phone"),
+                            street: this.getTopField("street")
+                        }
+                        this.popTopField("firstName");
+                        this.popTopField("lastName");
+                        this.popTopField("email");
+                        this.popTopField("accountName");
+                        this.popTopField("city");
+                        this.popTopField("phone");
+                        this.popTopField("street");
+
+                        this.results.push(tempRecord);
+                        progress++;
+                        console.log(progress + " / " + scenario.totalRecordCount);
+                    }
+                    //lead
+                    if (scenario.objectType === "lead") {
+                        const tempRecord = {
+                            firstName: this.getTopField("firstName"),
+                            lastName: this.getTopField("lasttName"),
+                            email: this.getTopField("email"),
+                            accountName: this.getTopField("accountName"),
+                            city: this.getTopField("city"),
+                            phone: this.getTopField("phone"),
+                            street: this.getTopField("street")
+                        }
+                        this.popTopField("firstName");
+                        this.popTopField("lastName");
+                        this.popTopField("email");
+                        this.popTopField("accountName");
+                        this.popTopField("city");
+                        this.popTopField("phone");
+                        this.popTopField("street");
+
+                        this.results.push(tempRecord);
+                        progress++;
+                        console.log(progress + " / " + scenario.totalRecordCount);
+                    }
                 }
             }
 
@@ -113,12 +159,77 @@ const utilities = {
                         currentMatch.fields.forEach(field => {
                             this.popTopField(field.name);
                         });
-                        // this.popTopField("accountName");
+                        this.popTopField("accountName");
                         this.popTopField("city");
                         this.popTopField("phone");
                         this.popTopField("street");
 
                         this.results.push(tempAccount);
+                        progress++;
+                        console.log(progress + " / " + scenario.totalRecordCount);
+                    }
+                    //handle contacts and leads
+                    if (scenario.objectType === "contact" || scenario.objectType === "lead") {
+                        let tempRecord = {
+                            firstName: this.getTopField("firstName"),
+                            lastName: this.getTopField("lasttName"),
+                            email: this.getTopField("email"),
+                            accountName: this.getTopField("accountName"),
+                            city: this.getTopField("city"),
+                            phone: this.getTopField("phone"),
+                            street: this.getTopField("street")
+                        }
+                        //push the original new record
+                        this.results.push(tempRecord);
+                        progress++;
+                        
+                        const dupeFields = [];
+                        //now make the duplicate by looping through field names
+                        //if field name is included in the match fields array, push
+                        //to dupeFields array to be used in next step
+                        for (recordField in tempRecord) {
+        
+                            //loop through match fields array and see if it's in there
+                            for(let t = 0; t < matchFields.length; t++){
+                                if(recordField === matchFields[t]){
+                                    dupeFields.push(recordField);
+                                }
+                            }
+                        }
+                        //look at each field again compared to dupeFields array
+                        //if it is not in there, change the field bc not creating
+                        //a dupe based on it
+                        for (recordField in tempRecord) {
+                           if(!dupeFields.includes(recordField)){
+                               this.popTopField(recordField);
+                           }
+                        }
+
+
+                        //and then reassemblying the tempRecord and pushing
+                        tempRecord = {
+                            firstName: this.getTopField("firstName"),
+                            lastName: this.getTopField("lasttName"),
+                            email: this.getTopField("email"),
+                            accountName: this.getTopField("accountName"),
+                            city: this.getTopField("city"),
+                            phone: this.getTopField("phone"),
+                            street: this.getTopField("street")
+                        }
+
+                        //finally, pop the fields that weren't popped, and then all
+                        currentMatch.fields.forEach(field => {
+                            this.popTopField(field.name);
+                        });
+                        this.popTopField("firstName");
+                        this.popTopField("lastName");
+                        this.popTopField("email");
+                        this.popTopField("accountName");
+                        this.popTopField("city");
+                        this.popTopField("phone");
+                        this.popTopField("street");
+                        
+                        this.results.push(tempRecord);
                         progress++;
                         console.log(progress + " / " + scenario.totalRecordCount);
                     }
@@ -143,6 +254,52 @@ const utilities = {
                         this.popTopField("street");
 
                         this.results.push(tempAccount);
+                        progress++;
+                        console.log(progress + " / " + scenario.totalRecordCount);
+                    }
+                    //  contact 
+                    if (scenario.objectType === "contact") {
+                        const tempRecord = {
+                            firstName: this.getTopField("firstName"),
+                            lastName: this.getTopField("lastName"),
+                            email: "",
+                            accountName: "",
+                            city: "",
+                            phone: "",
+                            street: ""
+                        }
+                        this.popTopField("firstName");
+                        this.popTopField("lastName");
+                        this.popTopField("email");
+                        this.popTopField("accountName");
+                        this.popTopField("city");
+                        this.popTopField("phone");
+                        this.popTopField("street");
+
+                        this.results.push(tempRecord);
+                        progress++;
+                        console.log(progress + " / " + scenario.totalRecordCount);
+                    }
+                    // lead
+                    if (scenario.objectType === "lead") {
+                        const tempRecord = {
+                            firstName: this.getTopField("firstName"),
+                            lastName: this.getTopField("lastName"),
+                            email: "",
+                            accountName: "",
+                            city: "",
+                            phone: "",
+                            street: ""
+                        }
+                        this.popTopField("firstName");
+                        this.popTopField("lastName");
+                        this.popTopField("email");
+                        this.popTopField("accountName");
+                        this.popTopField("city");
+                        this.popTopField("phone");
+                        this.popTopField("street");
+
+                        this.results.push(tempRecord);
                         progress++;
                         console.log(progress + " / " + scenario.totalRecordCount);
                     }
@@ -305,7 +462,6 @@ const utilities = {
         res.setHeader('Cache-Control', 'no-cache');
         res.setHeader('Pragma', 'no-cache');
 
-        // ta-da! this is cool, right?
         // stringify return a readable stream, that can be directly piped
         // to a writeable stream which is "res" (the response object from express.js)
         // since res is an abstraction over node http's response object which supports "streams"

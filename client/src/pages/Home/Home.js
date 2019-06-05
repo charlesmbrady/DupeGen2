@@ -28,6 +28,7 @@ function Home() {
   const [currentMatches, setCurrentMatches] = useState([{ name: "unique", recordCount: 0, fields: [] }, { name: "unknown", recordCount: 0, fields: [] }]);
   const [currentMatchFields, setCurrentMatchFields] = useState([]);
   const [totalRecordCount, setTotalRecordCount] = useState(0);
+  const [downloadReady, setDownloadReady] = useState(false);
 
   const scenario = {
     objectType: scenarioObject,
@@ -44,12 +45,16 @@ function Home() {
       if (fieldOption !== value) {
         return true;
       }
+      return false;
     });
     setMatchFieldsOptions(tempMatchFieldsOptions);
-  }
-  // pushMatchField = () => {
+  };
 
-  // };
+  const generate = (scenario) => {
+    utils.newScenario(scenario);
+    setDownloadReady(true);
+  }
+  
   const newMatchScenario = () => {
     let tempCurrentMatches = currentMatches;
     tempCurrentMatches.shift();
@@ -74,7 +79,7 @@ function Home() {
     setCurrentMatches(tempCurrentMatches);
     setMatchFieldsOptions(originalMatchFields);
     setCurrentMatchFields([]);
-  }
+  };
 
   const handleInput = (event) => {
     let value = Math.floor(event.target.value);
@@ -97,7 +102,7 @@ function Home() {
     });
     setCurrentMatches(tempCurrentMatches);
     setTotalRecordCount(recordCount);
-  }
+  };
 
   //when the component mounts.....
   useEffect(() => {
@@ -128,7 +133,7 @@ function Home() {
             <Row>
               <Col>
                 <h5>Match fields</h5>
-                {/* map the selected match fields here */}
+                {/* .map the selected match fields here */}
                 {
                   currentMatchFields.map(selectedField => (
                     <h6>{selectedField}</h6>
@@ -143,6 +148,7 @@ function Home() {
                     Add Field...
                   </DropdownToggle>
                   <DropdownMenu>
+                    {/* .map the available match fields here */}
                     {
                       matchFieldsOptions.map(field => (
                         <DropdownItem
@@ -211,8 +217,13 @@ function Home() {
                 <p>Total Record Count: {scenario.totalRecordCount}</p>
                 {totalRecordCount !== 0 ? (
                   <div>
-                    <button onClick={() => utils.newScenario(scenario)}>Download .csv</button>
-                    <button onClick={() => utils.test()}><a href="/api/scenarios">test .csv</a></button>
+                    <button onClick={() => generate(scenario)}>Generate Records</button>
+                    { downloadReady ? (
+                      <button onClick={() => utils.download()}><a href="/api/scenarios">Download .csv</a></button>
+                    ) : (
+                      ""
+                    )}
+                    
                   </div>
                 ) : ("")}
 
