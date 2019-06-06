@@ -63,7 +63,7 @@ const utilities = {
                     if (scenario.objectType === "contact") {
                         const tempRecord = {
                             firstName: this.getTopField("firstName"),
-                            lastName: this.getTopField("lasttName"),
+                            lastName: this.getTopField("lastName"),
                             email: this.getTopField("email"),
                             accountName: this.getTopField("accountName"),
                             city: this.getTopField("city"),
@@ -86,7 +86,7 @@ const utilities = {
                     if (scenario.objectType === "lead") {
                         const tempRecord = {
                             firstName: this.getTopField("firstName"),
-                            lastName: this.getTopField("lasttName"),
+                            lastName: this.getTopField("lastName"),
                             email: this.getTopField("email"),
                             accountName: this.getTopField("accountName"),
                             city: this.getTopField("city"),
@@ -431,27 +431,8 @@ const utilities = {
             return 0;
         }
 
-        let nameCount = 0;
         let accountName = "";
         let accountNames = [];
-        // firstDescriptors.forEach(f => {
-        //     if (nameCount === scenarioTotalRecordCount) {
-        //         return 0;
-        //     }
-        //     secondDescriptors.forEach(s => {
-        //         if (nameCount === scenarioTotalRecordCount) {
-        //             return 0;
-        //         }
-        //         thirdDescriptors.forEach(t => {
-        //             if (nameCount === scenarioTotalRecordCount) {
-        //                 return 0;
-        //             }
-        //             accountName = `${f} ${s} ${t}`;
-        //             accountNames.push(accountName);
-        //             nameCount++;
-        //         });
-        //     });
-        // });
 
         let count = scenarioTotalRecordCount;
         for(let i = 0; i < count; i++){
@@ -467,9 +448,6 @@ const utilities = {
             }
 
         }
-
-
-
         
         this.recordAccountNames = this.shuffle(accountNames);
     },
