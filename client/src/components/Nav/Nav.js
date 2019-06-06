@@ -25,7 +25,7 @@ function Navi() {
     return (
         <div>
             <Navbar color="light" light expand="md">
-                <Link to="/" className="navbar-brand">DupeGen</Link>
+                <a href="https://github.com/charlesmbrady/DupeGen2" target="_blank" className="navbar-brand">DupeGen</a>
                 <NavbarToggler onClick={toggler} />
                 {/* <Collapse isOpen={toggle} navbar> */}
                     {/* <Nav className="ml-auto" navbar> */}
