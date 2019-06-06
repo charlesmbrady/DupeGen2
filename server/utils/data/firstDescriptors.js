@@ -1,5 +1,5 @@
 const firstDescriptors= [
-    //Personal Qualities
+    'global',
     'first',
     'second',
     'third',

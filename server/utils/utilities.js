@@ -391,7 +391,7 @@ const utilities = {
         for (let i = 0; i < scenarioTotalRecordCount; i++) {
             const first = this.recordFirstNames[i].replace(' ', '');
             const last = this.recordLastNames[i].replace(' ', '');
-            const domain = this.recordAccountNames[i].replace(' ', '');
+            const domain = this.recordAccountNames[i].split(" ").join("").replace(' ', '');
 
             const newEmail = `${first}${last}@${domain}.com`;
             tempEmails.push(newEmail);
