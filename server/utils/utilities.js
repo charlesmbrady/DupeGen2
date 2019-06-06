@@ -433,26 +433,45 @@ const utilities = {
 
         let nameCount = 0;
         let accountName = "";
-        const accountNames = [];
-        firstDescriptors.forEach(f => {
-            if (nameCount === scenarioTotalRecordCount) {
+        let accountNames = [];
+        // firstDescriptors.forEach(f => {
+        //     if (nameCount === scenarioTotalRecordCount) {
+        //         return 0;
+        //     }
+        //     secondDescriptors.forEach(s => {
+        //         if (nameCount === scenarioTotalRecordCount) {
+        //             return 0;
+        //         }
+        //         thirdDescriptors.forEach(t => {
+        //             if (nameCount === scenarioTotalRecordCount) {
+        //                 return 0;
+        //             }
+        //             accountName = `${f} ${s} ${t}`;
+        //             accountNames.push(accountName);
+        //             nameCount++;
+        //         });
+        //     });
+        // });
+
+        let count = scenarioTotalRecordCount;
+        for(let i = 0; i < count; i++){
+            let first = firstDescriptors[Math.floor(Math.random() * firstDescriptors.length)];
+            let second = secondDescriptors[Math.floor(Math.random() * secondDescriptors.length)];
+            let third = thirdDescriptors[Math.floor(Math.random() * thirdDescriptors.length)];
+            accountName = `${first} ${second} ${third}`;
+
+            if(accountNames.includes(accountName)){
                 return 0;
+            }else{
+                accountNames.push(accountName);
             }
-            secondDescriptors.forEach(s => {
-                if (nameCount === scenarioTotalRecordCount) {
-                    return 0;
-                }
-                thirdDescriptors.forEach(t => {
-                    if (nameCount === scenarioTotalRecordCount) {
-                        return 0;
-                    }
-                    accountName = `${f} ${s} ${t}`;
-                    accountNames.push(accountName);
-                    nameCount++;
-                });
-            });
-        });
-        this.recordAccountNames = accountNames;
+
+        }
+
+
+
+        
+        this.recordAccountNames = this.shuffle(accountNames);
     },
     downloadCsv: function (req, res) {
         // adding appropriate headers, so browsers can start downloading
@@ -467,7 +486,25 @@ const utilities = {
         // since res is an abstraction over node http's response object which supports "streams"
         stringify(req, { header: true })
             .pipe(res);
-    }
+    },
+    shuffle: function (array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+      
+        return array;
+      }
 }
 
 module.exports = utilities;
