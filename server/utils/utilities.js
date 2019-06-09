@@ -32,12 +32,11 @@ const utilities = {
         //unknowns, and dupe scenarios
         for (let i = 0; i < scenario.matches.length; i++) {
             //first handle unique scenarios
-            const matchFields = [];
-            scenario.matches.forEach(match => {
-                match.fields.forEach(matchField => {
+            let matchFields = [];
+        
+                scenario.matches[i].fields.forEach(matchField => {
                     matchFields.push(matchField.name);
                 });
-            });
 
             if (scenario.matches[i].name === "unique") {
                 const currentMatch = scenario.matches[i];
@@ -124,7 +123,7 @@ const utilities = {
                         this.results.push(tempAccount);
                         progress++;
                         
-                        const dupeFields = [];
+                        let dupeFields = [];
                         //now make the duplicate by looping through field names
                         //if field name is included in the match fields array, push
                         //to dupeFields array to be used in next step
