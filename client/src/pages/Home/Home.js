@@ -56,6 +56,10 @@ function Home() {
   }
   
   const newMatchScenario = () => {
+    //if no fields selected, don't let save
+    if(currentMatchFields.length === 0){
+      return 0;
+    }
     let tempCurrentMatches = currentMatches;
     tempCurrentMatches.shift();
     tempCurrentMatches.pop();
@@ -126,7 +130,7 @@ function Home() {
                     Select Object:
                     </h3>
                 </div>
-                <ObjectDropdown objects={objects} setOriginalMatchFields={setOriginalMatchFields} scenarioObject={scenarioObject} setScenarioObject={setScenarioObject} setCurrentMatchFields={setCurrentMatchFields} setMatchFieldsOptions={setMatchFieldsOptions} />
+                <ObjectDropdown objects={objects} setOriginalMatchFields={setOriginalMatchFields} scenarioObject={scenarioObject} setScenarioObject={setScenarioObject} setCurrentMatchFields={setCurrentMatchFields} setCurrentMatches={setCurrentMatches} setMatchFieldsOptions={setMatchFieldsOptions} />
               </Col>
             </Row>
             <hr></hr>

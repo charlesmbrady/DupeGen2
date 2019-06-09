@@ -15,6 +15,8 @@ function ObjectDropdown(props) {
   }
 
   const selectObject = (object) => {
+    props.setCurrentMatches([{ name: "unique", recordCount: 0, fields: [] }, { name: "unknown", recordCount: 0, fields: [] }]);
+    props.setCurrentMatchFields([]);
     props.setScenarioObject(object);
     if (object === "account") {
       props.setMatchFieldsOptions(["accountName", "phone", "city", "street"]);
