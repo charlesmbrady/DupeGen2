@@ -27,8 +27,6 @@ const utilities = {
         this.generateEmails(scenario.totalRecordCount);
         this.generatePhoneNumbers(scenario.totalRecordCount);
 
-        let progress = 0;
-
         //loop through the matches, handling unique,
         //unknowns, and dupe scenarios
         for (let i = 0; i < scenario.matches.length; i++) {
@@ -56,8 +54,6 @@ const utilities = {
                         this.popTopField("street");
 
                         this.results.push(tempAccount);
-                        progress++;
-                        console.log(progress + " / " + scenario.totalRecordCount);
                     }
                     //contact
                     if (scenario.objectType === "contact") {
@@ -79,8 +75,6 @@ const utilities = {
                         this.popTopField("street");
 
                         this.results.push(tempRecord);
-                        progress++;
-                        console.log(progress + " / " + scenario.totalRecordCount);
                     }
                     //lead
                     if (scenario.objectType === "lead") {
@@ -102,8 +96,6 @@ const utilities = {
                         this.popTopField("street");
 
                         this.results.push(tempRecord);
-                        progress++;
-                        console.log(progress + " / " + scenario.totalRecordCount);
                     }
                 }
             }
@@ -122,7 +114,6 @@ const utilities = {
                         };
                         //push the original new record
                         this.results.push(tempAccount);
-                        progress++;
 
                         let dupeFields = [];
                         //now make the duplicate by looping through field names
@@ -165,8 +156,6 @@ const utilities = {
                         this.popTopField("street");
 
                         this.results.push(tempAccount);
-                        progress++;
-                        console.log(progress + " / " + scenario.totalRecordCount);
                     }
                     //handle contacts and leads
                     if (scenario.objectType === "contact" || scenario.objectType === "lead") {
@@ -181,8 +170,7 @@ const utilities = {
                         }
                         //push the original new record
                         this.results.push(tempRecord);
-                        progress++;
-
+                        
                         const dupeFields = [];
                         //now make the duplicate by looping through field names
                         //if field name is included in the match fields array, push
@@ -230,8 +218,6 @@ const utilities = {
                         this.popTopField("street");
 
                         this.results.push(tempRecord);
-                        progress++;
-                        console.log(progress + " / " + scenario.totalRecordCount);
                     }
                 }
             }
@@ -254,8 +240,6 @@ const utilities = {
                         this.popTopField("street");
 
                         this.results.push(tempAccount);
-                        progress++;
-                        console.log(progress + " / " + scenario.totalRecordCount);
                     }
                     //  contact 
                     if (scenario.objectType === "contact") {
@@ -277,8 +261,6 @@ const utilities = {
                         this.popTopField("street");
 
                         this.results.push(tempRecord);
-                        progress++;
-                        console.log(progress + " / " + scenario.totalRecordCount);
                     }
                     // lead
                     if (scenario.objectType === "lead") {
@@ -300,8 +282,6 @@ const utilities = {
                         this.popTopField("street");
 
                         this.results.push(tempRecord);
-                        progress++;
-                        console.log(progress + " / " + scenario.totalRecordCount);
                     }
                 }
             }
@@ -430,7 +410,7 @@ const utilities = {
     },
     generateAccountNames: function (scenarioTotalRecordCount) {
         //generates and returns an array of account names
-        const maxNumberAccountNames = firstDescriptors * secondDescriptors * thirdDescriptors; //this number is currently limited by the max number of accountNames possible 
+        const maxNumberAccountNames = firstDescriptors.length * secondDescriptors.length * thirdDescriptors.length; //this number is currently limited by the max number of accountNames possible 
         //handle if too many account names requested
         if (scenarioTotalRecordCount > maxNumberAccountNames) {
             console.log(`Record count requested is too many.  Can only generate a maximum of ${maxNumberAccountNames} account names right now.`)
@@ -440,8 +420,7 @@ const utilities = {
         let accountName = "";
         let accountNames = [];
 
-        let count = scenarioTotalRecordCount;
-        for (let i = 0; i < count; i++) {
+        for (let i = 0; i < scenarioTotalRecordCount; i++) {
             let first = firstDescriptors[Math.floor(Math.random() * firstDescriptors.length)];
             let second = secondDescriptors[Math.floor(Math.random() * secondDescriptors.length)];
             let third = thirdDescriptors[Math.floor(Math.random() * thirdDescriptors.length)];
@@ -449,6 +428,7 @@ const utilities = {
 
             if (accountNames.includes(accountName)) {
                 console.log('included');
+                i--;
 
             }
             else {
