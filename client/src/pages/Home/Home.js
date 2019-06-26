@@ -11,7 +11,7 @@ import {
   Table
 } from 'reactstrap';
 import Nav from '../../components/Nav/Nav';
-import utils from '../../utils/API';
+import utils from '../../utils/utilities';
 import ObjectDropdown from '../../components/dropdown/Dropdown';
 
 function Home() {
@@ -51,7 +51,7 @@ function Home() {
   };
 
   const generate = (scenario) => {
-    utils.newScenario(scenario);
+    utils.newProcessScenario(scenario);
     setDownloadReady(true);
   }
   
@@ -220,15 +220,9 @@ function Home() {
                 </Table>
                 <p>Total Record Count: {scenario.totalRecordCount}</p>
                 {totalRecordCount !== 0 ? (
-                  <div>
+                  
                     <button onClick={() => generate(scenario)}>Generate Records</button>
-                    { downloadReady ? (
-                      <button onClick={() => utils.download()}><a href="/api/scenarios">Download .csv</a></button>
-                    ) : (
-                      ""
-                    )}
-                    
-                  </div>
+                   
                 ) : ("")}
 
               </div>
