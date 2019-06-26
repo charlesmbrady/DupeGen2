@@ -129,7 +129,7 @@ function Home() {
               <Col>
                 <div>
                   <h3>
-                    Select Object:
+                    Object:
                     </h3>
                 </div>
                 <ObjectDropdown objects={objects} setOriginalMatchFields={setOriginalMatchFields} scenarioObject={scenarioObject} setScenarioObject={setScenarioObject} setCurrentMatchFields={setCurrentMatchFields} setCurrentMatches={setCurrentMatches} setMatchFieldsOptions={setMatchFieldsOptions} />
@@ -138,7 +138,7 @@ function Home() {
             <hr></hr>
             <Row>
               <Col>
-                <h5>Match fields</h5>
+                <h5>Match Fields</h5>
                 {/* .map the selected match fields here */}
                 {
                   currentMatchFields.map(selectedField => (
