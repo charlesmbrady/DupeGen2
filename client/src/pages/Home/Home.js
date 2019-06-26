@@ -28,7 +28,7 @@ function Home() {
   const [currentMatches, setCurrentMatches] = useState([{ name: "unique", recordCount: 0, fields: [] }, { name: "unknown", recordCount: 0, fields: [] }]);
   const [currentMatchFields, setCurrentMatchFields] = useState([]);
   const [totalRecordCount, setTotalRecordCount] = useState(0);
-  const [downloadReady, setDownloadReady] = useState(false);
+  const [downloadReady, setDownloadReady] = useState(true);
 
   const scenario = {
     objectType: scenarioObject,
@@ -51,13 +51,15 @@ function Home() {
   };
 
   const generate = (scenario) => {
+    setDownloadReady(false);
     utils.newProcessScenario(scenario);
     setDownloadReady(true);
+
   }
-  
+
   const newMatchScenario = () => {
     //if no fields selected, don't let save
-    if(currentMatchFields.length === 0){
+    if (currentMatchFields.length === 0) {
       return 0;
     }
     let tempCurrentMatches = currentMatches;
@@ -220,9 +222,9 @@ function Home() {
                 </Table>
                 <p>Total Record Count: {scenario.totalRecordCount}</p>
                 {totalRecordCount !== 0 ? (
-                  
-                    <button onClick={() => generate(scenario)}>Generate Records</button>
-                   
+
+                  <button onClick={() => generate(scenario)}>Generate Records</button>
+
                 ) : ("")}
 
               </div>
