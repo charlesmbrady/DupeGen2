@@ -11,11 +11,6 @@ import {
 } from 'reactstrap';
 
 function Navi() {
-    const [toggle, setToggle] = useState(false);
-
-    const toggler = () => {
-        setToggle(!toggle);
-    }
 
     useEffect(() => {
         console.log("hello Nav bar");
@@ -25,17 +20,8 @@ function Navi() {
     return (
         <div>
             <Navbar className="my-nav" color="light" light expand="md">
-                <a href="https://github.com/charlesmbrady/DupeGen2" target="_blank" className="navbar-brand">DupeGen</a>
-                <NavbarToggler onClick={toggler} />
-                {/* <Collapse isOpen={toggle} navbar> */}
-                    {/* <Nav className="ml-auto" navbar> */}
-                        
-                        {/* <NavItem> */}
-                            {/* TODO: make this open a modal with about info */}
-                            {/* <Link to="/about" className="nav-link">About</Link> */}
-                        {/* </NavItem> */}
-                    {/* </Nav> */}
-                {/* </Collapse> */}
+                <a href="/" className="navbar-brand">DupeGen</a>
+
             </Navbar>
         </div>
 

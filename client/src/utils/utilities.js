@@ -170,7 +170,7 @@ const utilities = {
                         }
                         //push the original new record
                         this.results.push(tempRecord);
-                        
+
                         const dupeFields = [];
                         //now make the duplicate by looping through field names
                         //if field name is included in the match fields array, push
@@ -420,22 +420,44 @@ const utilities = {
         let accountName = "";
         let accountNames = [];
 
-        for (let i = 0; i < scenarioTotalRecordCount; i++) {
-            let first = firstDescriptors[Math.floor(Math.random() * firstDescriptors.length)];
-            let second = secondDescriptors[Math.floor(Math.random() * secondDescriptors.length)];
-            let third = thirdDescriptors[Math.floor(Math.random() * thirdDescriptors.length)];
-            accountName = `${first} ${second} ${third}`;
+    // for very large orgs don't worry about trying to make the account names look 'natural'
+        if (scenarioTotalRecordCount > 500000) {
+            let first = "";
+            let second = "";
+            let third = "";
 
-            if (accountNames.includes(accountName)) {
-                console.log('included');
-                i--;
-
+            for (one of firstDescriptors) {
+                first = one;
+                for (two of secondDescriptors) {
+                    second = two;
+                    for (three of thirdDescriptors) {
+                        third = three;
+                        accountName = `${first} ${second} ${third}`;
+                        accountNames.push(accountName);
+                    }
+                }
             }
-            else {
-                accountNames.push(accountName);
-            }
-
         }
+        else {
+            for (let i = 0; i < scenarioTotalRecordCount; i++) {
+                let first = firstDescriptors[Math.floor(Math.random() * firstDescriptors.length)];
+                let second = secondDescriptors[Math.floor(Math.random() * secondDescriptors.length)];
+                let third = thirdDescriptors[Math.floor(Math.random() * thirdDescriptors.length)];
+                accountName = `${first} ${second} ${third}`;
+
+                if (accountNames.includes(accountName)) {
+                    console.log('included');
+                    i--;
+
+                }
+                else {
+                    accountNames.push(accountName);
+                }
+
+            }
+        }
+
+
 
         this.recordAccountNames = this.shuffle(accountNames);
 
