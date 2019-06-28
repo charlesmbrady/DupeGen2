@@ -420,7 +420,7 @@ const utilities = {
         let accountName = "";
         let accountNames = [];
 
-    // for very large orgs don't worry about trying to make the account names look 'natural'
+        // for very large orgs don't worry about trying to make the account names look 'natural'
         if (scenarioTotalRecordCount > 500000) {
             let first = "";
             let second = "";
@@ -428,14 +428,29 @@ const utilities = {
 
             for (one of firstDescriptors) {
                 first = one;
-                for (two of secondDescriptors) {
-                    second = two;
-                    for (three of thirdDescriptors) {
-                        third = three;
-                        accountName = `${first} ${second} ${third}`;
-                        accountNames.push(accountName);
+                if (first === undefined) {
+                    console.log('uh oh undefined');
+                } else {
+                    for (two of secondDescriptors) {
+                        second = two;
+                        if (second === undefined) {
+                            console.log('uh oh undefined');
+                        } else {
+                            for (three of thirdDescriptors) {
+                                third = three;
+                                if (third === undefined) {
+                                    console.log('uh oh undefined');
+                                } else {
+                                    accountName = `${first} ${second} ${third}`;
+                                    accountNames.push(accountName);
+                                }
+
+                            }
+                        }
+
                     }
                 }
+
             }
         }
         else {
