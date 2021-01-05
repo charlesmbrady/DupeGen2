@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/charlesmbrady/DupeGen2#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "concurrently": "^4.1.0",
     "csv-stringify": "^5.3.0",
     "dotenv": "^8.0.0",
